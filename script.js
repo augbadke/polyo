@@ -32,7 +32,7 @@ handleBoardSize(screenWidth);
 
 gameNumber.innerText = `Daily game #${games[todayDate].n}`;
 
-const stats = JSON.parse(localStorage.getItem('@polyo-stats:')) || {
+const stats = JSON.parse(localStorage.getItem('@fitme-stats:')) || {
   fisrtTime: true,
   lastDate: '0000-00-00',
   lastGamePlayed: 1,
@@ -135,6 +135,9 @@ function verifySolution(matrix1, matrix2, stats, todayDate) {
     const time = `${String(minutes).padStart(2,'0')}:${seconds}`;
    
     stats.lastDate = todayDate;
+    if (stats.fisrtTime) {
+      stats.maxStreak = 1;
+    }
     stats.fisrtTime = false;
     stats.time = time;
     stats.puzzleSolved += 1;
@@ -163,7 +166,7 @@ function verifySolution(matrix1, matrix2, stats, todayDate) {
 
     stats.lastGamePlayed = games[todayDate].n;
 
-    localStorage.setItem('@polyo-stats:', JSON.stringify(stats));
+    localStorage.setItem('@fitme-stats:', JSON.stringify(stats));
   }
 
   setStats();
