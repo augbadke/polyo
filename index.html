@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polyo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Micro+5&family=Roboto:wght@400;700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon32.png">
+  
+</head>
+<body>
+
+  <header>
+    <button class="helpBtn">
+      <span class="material-symbols-outlined">
+        question_mark
+      </span>
+    </button>
+    <button class="statsBtn">
+      <span class="material-symbols-outlined">
+        bar_chart
+      </span>
+    </button>
+    <h1>Polyo</h1>
+    <button class="contactBtn">
+      <span class="material-symbols-outlined icon-small">
+        mail
+      </span>
+    </button>
+    
+  </header>
+
+  <h2></h2>
+
+  <div id="board-container">
+    <div id="board"></div>
+    <div id="align_pieces"></div>
+  </div>
+
+  <div class="modal-help"> 
+    <div class="help-card">
+      <button class="material-symbols-outlined close">
+        close
+      </button>
+      <h3>How to play</h3>
+      <p class="text">Drag the piece onto the board and arrange them to completely fill the grid. A hidden timer is started upon clicking a piece.</p>
+      <table class="board_example">
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      <div class="align_pieces">
+        <table class="piece1_example">
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+        <table class="piece2_example">
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+        <table class="piece3_example">
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+      <p class="text">Double-click the piece to rotate it.</p>
+      <div class="align_pieces">
+        <span class="material-symbols-outlined hand">pan_tool_alt</span>
+        <table class="piece4_example">
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+      <p class="text">A new game is released every day at midnight!</p>
+    </div>
+  </div>
+
+  <div class="modal-stats"> 
+    <div class="stats-card">
+      <button class="material-symbols-outlined close-stats">
+        close
+      </button>
+      <h3>Stats</h3>
+      <div class="Conclusion-text">
+        <!-- <p class="congrats">You are the best!</p> -->
+        <p class="descripition">The puzzle was solved in:</p>
+        <span class="time">00:00</span>
+      </div>
+      <ul class="stats1">
+        <li class="stats1-list"><div class="counter puzzles_solved">0</div><div class="statsTitle">Puzzles solved</div></li>
+        <li class="stats1-list"><div class="counter current_streak">0</div><div class="statsTitle">Current Streak</div></li>
+        <li class="stats1-list"><div class="counter max_streak">0</div><div class="statsTitle">Max streak</div></li>
+      </ul>
+      <h4>Distribution of puzzle completion times:</h4>
+      <ul class="stats2">
+        <li class="stats2-list"><div class="bar-title">&lt; 1min</div><div class="bar">0</div></li>
+        <li class="stats2-list"><div class="bar-title">&lt; 2min</div><div class="bar">0</div></li>
+        <li class="stats2-list"><div class="bar-title">&lt; 3min</div><div class="bar">0</div></li>
+        <li class="stats2-list"><div class="bar-title">&lt; 4min</div><div class="bar">0</div></li>
+        <li class="stats2-list"><div class="bar-title">&lt; 5min</div><div class="bar">0</div></li>
+        <li class="stats2-list"><div class="bar-title">&gt; 5min</div><div class="bar">0</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal-contact"> 
+    <div class="contact-card">
+      <button class="material-symbols-outlined close-contact">
+        close
+      </button>
+      <h3>Contact</h3>
+
+      <p class="text">If you have any suggestions, feedback, or questions about Polyo game, please feel free to contact at <a href="mailto:polyodaily@gmail.com">polyodaily@gmail.com</a>.</p>
+      <p class="text">This site was devolped by Augusto Badke.</p>
+      
+    </div>
+  </div>
+
+  <script src="./games.js"></script>
+  <script src="./Modal.js"></script>
+  <script src="./Polyomino.js"></script>
+  <script src="./script.js"></script>
+</body>
+<!-- <script src="script3.js"></script> -->
+</html>
