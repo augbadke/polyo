@@ -16,7 +16,7 @@ let screenWidth = window.matchMedia("(min-width: 450px)");
 let gridSize;
 
 const date = new Date();
-const todayDate = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDay()).padStart(2,'0')}`;
+const todayDate = date.toISOString().split('T')[0];
 
 function handleBoardSize(screenWidth) {
   if (screenWidth.matches) {
