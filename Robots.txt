@@ -1,0 +1,7 @@
+# Robots.txt para Polyo
+# https://polyo.fun
+
+User-agent: *
+Allow: /
+
+Sitemap: https://polyo.fun/sitemap.xml
