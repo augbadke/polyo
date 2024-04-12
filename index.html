@@ -14,20 +14,21 @@
 <body>
 
   <header>
-    <button class="helpBtn">
+    <button type="button" title="Show help" class="helpBtn">
       <svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 -960 960 960" width="25"><path d="M424-320q0-81 14.5-116.5T500-514q41-36 62.5-62.5T584-637q0-41-27.5-68T480-732q-51 0-77.5 31T365-638l-103-44q21-64 77-111t141-47q105 0 161.5 58.5T698-641q0 50-21.5 85.5T609-475q-49 47-59.5 71.5T539-320H424Zm56 240q-33 0-56.5-23.5T400-160q0-33 23.5-56.5T480-240q33 0 56.5 23.5T560-160q0 33-23.5 56.5T480-80Z"/></svg>
     </button>
-    <button class="statsBtn">
+    <button type="button" title="Show stats" class="statsBtn">
       <svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 -960 960 960" width="25"><path d="M640-160v-280h160v280H640Zm-240 0v-640h160v640H400Zm-240 0v-440h160v440H160Z"/></svg>
     </button>
     <h1>Polyo</h1>
-    <button class="contactBtn">
+    <button type="button" title="Show contact info" class="contactBtn">
       <svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 -960 960 960" width="25"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280 320-200v-80L480-520 160-720v80l320 200Z"/></svg>
     </button>
     
   </header>
 
-  <h2></h2>
+  <h2><span class="h2">Daily game</span> #<span class="gameN">0</span></h2>
+  <button type="button" title="Highlights a piece position on the board. Each click adds 1min to the timer." class="hintBtn"> <span class="hint-title">Show hint</span> <span class="hintN">1</span></button>
 
   <div id="board-container">
     <div id="board"></div>
@@ -36,7 +37,7 @@
 
   <div class="modal-help"> 
     <div class="help-card">
-      <button class="close">
+      <button type="button" title="Close" class="close">
         <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
       </button>
       <h3>How to play</h3>
@@ -127,24 +128,28 @@
           </tr>
         </table>
       </div>
+      <p class="text">When clicking on the hint button, the position of a piece is highlighted on the board. Each click on the hint button adds one minute to the timer.</p>
+      <p class="text">When refreshing the page, hints remain, and the consequences of using hints also persist. Games may have more than one solution, hints reveal only one possible solution.</p>
       <p class="text">A new game is released every day at midnight!</p>
     </div>
   </div>
 
   <div class="modal-stats"> 
     <div class="stats-card">
-      <button class="close-stats">
+      <button type="button" title="Close" class="close-stats">
         <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
       </button>
       <h3>Stats</h3>
       <div class="Conclusion-text">
-        <!-- <p class="congrats">You are the best!</p> -->
         <p class="descripition">The puzzle was solved in:</p>
         <span class="time">00:00</span>
+        <ul>
+          <li class="hints"><div class="counter hintsUsed">0</div><span class="statsTitle"># Hints</span></li>
+        </ul>
       </div>
       <ul class="stats1">
         <li class="stats1-list"><div class="counter puzzles_solved">0</div><div class="statsTitle">Puzzles solved</div></li>
-        <li class="stats1-list"><div class="counter current_streak">0</div><div class="statsTitle">Current Streak</div></li>
+        <li class="stats1-list"><div class="counter current_streak">0</div><div class="statsTitle">Current streak</div></li>
         <li class="stats1-list"><div class="counter max_streak">0</div><div class="statsTitle">Max streak</div></li>
       </ul>
       <h4>Distribution of puzzle completion times:</h4>
@@ -155,13 +160,15 @@
         <li class="stats2-list"><div class="bar-title">&lt; 4min</div><div class="bar">0</div></li>
         <li class="stats2-list"><div class="bar-title">&lt; 5min</div><div class="bar">0</div></li>
         <li class="stats2-list"><div class="bar-title">&gt; 5min</div><div class="bar">0</div></li>
+        <li class="stats2-list"><div class="bar-title">Total hints used:</div><div class="totalHints">0</div></li>
       </ul>
+      <p class="text">A new game will be released at midnight.</p>
     </div>
   </div>
 
   <div class="modal-contact"> 
     <div class="contact-card">
-      <button class="close-contact">
+      <button type="button" title="Close" class="close-contact">
         <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
       </button>
       <h3>Contact</h3>
@@ -172,10 +179,10 @@
     </div>
   </div>
 
+  <script src="./languages.js"></script>
   <script src="./games.js"></script>
   <script src="./Modal.js"></script>
   <script src="./Polyomino.js"></script>
   <script src="./script.js"></script>
 </body>
-<!-- <script src="script3.js"></script> -->
 </html>

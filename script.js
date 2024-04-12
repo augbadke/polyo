@@ -1,15 +1,21 @@
 const root = document.querySelector(':root');
 const board = document.getElementById('board');
+const gameNumber = document.querySelector('.gameN');
 const conclusionTime = document.querySelector('.time');
+const hints = document.querySelector('.hintsUsed');
 const puzzlesSolved = document.querySelector('.puzzles_solved');
 const currentStreak = document.querySelector('.current_streak');
 const maxStreak = document.querySelector('.max_streak');
 const distribuition = document.querySelectorAll('.bar');
-const gameNumber = document.querySelector('h2')
+const totalHints = document.querySelector('.totalHints');
+const hintBtn = document.querySelector('.hintBtn');
+const hintN = document.querySelector('.hintN');
 
 const modalHelp = new Modal('.modal-help','.close', '.helpBtn');
 const modalStats = new Modal('.modal-stats','.close-stats', '.statsBtn');
 new Modal('.modal-contact','.close-contact', '.contactBtn');
+
+hintBtn.addEventListener('click', showHint)
 
 let screenWidth = window.matchMedia("(min-width: 450px)");
 
@@ -30,17 +36,22 @@ function handleBoardSize(screenWidth) {
 
 handleBoardSize(screenWidth);
 
-gameNumber.innerText = `Daily game #${games[todayDate].n}`;
+gameNumber.innerText = games[todayDate].n;
 
-const stats = JSON.parse(localStorage.getItem('@fitme-stats:')) || {
+const stats = JSON.parse(localStorage.getItem('@polyo-stats:')) || {
   fisrtTime: true,
   lastDate: '0000-00-00',
-  lastGamePlayed: 1,
+  interactDate: '0000-00-00',
+  lastGamePlayed: 0,
+  initialTime: null,
   time: "00:00",
+  hints: 0,
   puzzleSolved: 0,
   currentStreak: 0,
   maxStreak: 0,
   distribuition: [0,0,0,0,0,0],
+  totalHints: 0,
+  var1: null,
 };
 
 if (stats.fisrtTime) {
@@ -52,6 +63,11 @@ if (todayDate == stats.lastDate) {
 } else {
   stats.time = "00:00";
 };
+
+if (todayDate != stats.interactDate) {
+  stats.hints = 0;
+};
+
 setStats();
 
 const solution = games[todayDate].solution;
@@ -112,6 +128,60 @@ function startGame() {
   };
 };
 
+let currentHintIndex = stats.hints;
+
+for (let i = 0; i < stats.hints; i++) {
+  loadHint(i)
+}
+
+if (currentHintIndex < games[todayDate].var.length-1) {
+  hintN.innerText = currentHintIndex+1;
+} else {
+  hintBtn.style.display = 'none';
+}
+
+function showHint() {
+  var currentHint = games[todayDate].var[currentHintIndex];
+  
+  if (currentHintIndex < games[todayDate].var.length-1) {
+    for (let i=0; i<currentHint[0].length; i++) {
+      const hint = document.createElement('div');
+      hint.classList.add('hint_highlight');
+      hint.style.left = currentHint[1][i]*gridSize + 'px';
+      hint.style.top = currentHint[0][i]*gridSize + 'px';
+      hint.style.backgroundColor = colors[currentHintIndex][1];
+      board.appendChild(hint);
+    }
+
+    currentHintIndex++;
+
+    if (todayDate != stats.lastDate) {
+      stats.hints = currentHintIndex;
+      stats.interactDate = todayDate;
+      localStorage.setItem('@polyo-stats:', JSON.stringify(stats));
+    }
+
+    if (currentHintIndex < games[todayDate].var.length-1) {
+      hintN.innerText = currentHintIndex+1;
+    } else {
+      hintBtn.style.display = 'none';
+    }
+  }
+}
+
+function loadHint(j) {
+  var currentHint = games[todayDate].var[j];
+
+  for (let i=0; i<currentHint[0].length; i++) {
+    const hint = document.createElement('div');
+    hint.classList.add('hint_highlight');
+    hint.style.left = currentHint[1][i]*gridSize + 'px';
+    hint.style.top = currentHint[0][i]*gridSize + 'px';
+    hint.style.backgroundColor = colors[j][1];
+    board.appendChild(hint);
+  }
+}
+
 function verifySolution(matrix1, matrix2, stats, todayDate) {
 
   if (matrix1.length !== matrix2.length || matrix1[0].length !== matrix2[0].length) {
@@ -128,7 +198,7 @@ function verifySolution(matrix1, matrix2, stats, todayDate) {
 
   if (stats.lastDate != todayDate) {
     const endTime = new Date();
-    const elapsedTime = endTime - Polyomino.initalTime;
+    const elapsedTime = endTime - Polyomino.initalTime + currentHintIndex*60000;
     const totalSeconds = Math.floor(elapsedTime / 1000);
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = String(totalSeconds - minutes*60).padStart(2,'0');
@@ -140,6 +210,7 @@ function verifySolution(matrix1, matrix2, stats, todayDate) {
     }
     stats.fisrtTime = false;
     stats.time = time;
+    stats.hints = currentHintIndex;
     stats.puzzleSolved += 1;
     if (stats.lastGamePlayed+1==games[todayDate].n) {
       stats.currentStreak += 1;
@@ -163,10 +234,10 @@ function verifySolution(matrix1, matrix2, stats, todayDate) {
     } else if (totalSeconds > 60*5) {
       stats.distribuition[5] += 1;
     };
-
+    stats.totalHints = stats.totalHints + currentHintIndex;
     stats.lastGamePlayed = games[todayDate].n;
 
-    localStorage.setItem('@fitme-stats:', JSON.stringify(stats));
+    localStorage.setItem('@polyo-stats:', JSON.stringify(stats));
   }
 
   setStats();
@@ -187,11 +258,13 @@ function setStats() {
       };
     };
   };
+  totalHints.textContent = stats.totalHints;
 
   conclusionTime.textContent = stats.time;
+  hints.textContent = stats.hints;
   puzzlesSolved.textContent = stats.puzzleSolved;
   currentStreak.textContent = stats.currentStreak;
-  maxStreak.textContent = stats.maxStreak;  
+  maxStreak.textContent = stats.maxStreak;
 }
 
 startGame();

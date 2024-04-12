@@ -21,7 +21,7 @@
 }
 
 body {
-  background-color: rgb(3, 0, 9)
+  background-color: rgb(3, 0, 9);
 }
 
 a {
@@ -96,12 +96,25 @@ h1 {
 }
 
 h2 {
-  margin: 20px auto 0;
+  margin: 10px auto 10px;
   width: fit-content;
 
   color: rgb(242, 242, 242);
   font-family: var(--ff-text);
   font-size: 20px;
+}
+
+.hintBtn {
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
+
+  color: rgb(242, 242, 242);
+  font-family: var(--ff-text);
+  font-size: 15px;
+  font-weight: 500;
+
+  border-bottom: 1px solid rgba(242, 242, 242,0.5);
 }
 
 #board-container {
@@ -126,6 +139,15 @@ h2 {
 
 #board {
   position: relative;
+}
+
+.hint_highlight {
+  width: var(--piece-size);
+  height: var(--piece-size);
+  position: absolute;
+  border-radius: 6px;
+
+  animation: fade 0.3s ease forwards;
 }
 
 .grid {
@@ -168,7 +190,7 @@ h2 {
 }
 
 .help-card, .stats-card, .contact-card {
-  margin: 90px auto 0;
+  margin: 67px auto 0;
   padding: 50px clamp(20px,33.3333vw - 86.6667px,30px) 40px;
   background: rgb(19, 19, 19);
   max-width: 700px;
@@ -193,6 +215,7 @@ p {
 
 .text {
   text-align: justify;
+  text-align-last: center;
   font-size: 18px;
 }
 
@@ -293,19 +316,13 @@ h3 {
 }
 
 .Conclusion-text {
-  margin-bottom: 40px;
-  margin-top: 20px;
+  margin-bottom: 20px;
   
   display: flex;
   flex-direction: column;
   gap: 20px;
 
   align-items: center;
-}
-
-.congrats {
-  font-size: 40px;
-  line-height: 20px;
 }
 
 .descripition {
@@ -316,6 +333,12 @@ h3 {
   font-size: 40px;
 }
 
+.hints {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
 ul {
   display: flex;
   align-items: center;
@@ -323,13 +346,13 @@ ul {
 }
 
 .stats1 {
-  gap: 50px;
+  gap: 30px;
 }
 
 li {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 .stats1-list {
@@ -343,7 +366,7 @@ li {
 }
 
 .statsTitle{
-  width: 60px;
+  width: 90px;
   text-align: center;
   line-height: 25px;
 }
@@ -415,12 +438,15 @@ h4 {
   }
 
   h2 {
-    margin: 40px auto 0;
+    margin: 20px auto 10px;
   }
 
   .text {
-    text-align: center;
     font-size: 20px;
+  }
+
+  .help-card, .stats-card, .contact-card {
+    margin: 90px auto 0;
   }
 
 }
@@ -707,5 +733,15 @@ h4 {
     opacity: 1;
     transform: translateY(0);
 
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.23;
   }
 }
