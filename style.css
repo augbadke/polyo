@@ -126,6 +126,14 @@ h2 {
   align-items: center;
 }
 
+#board-container p {
+  margin-top: 5px;
+  font-family: var(--ff-text);
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(242, 242, 242);
+}
+
 #align_pieces {
   margin: 10px auto 0;
   max-width: 600px;

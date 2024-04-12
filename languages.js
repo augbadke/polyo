@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const statsTitle = document.querySelectorAll(".statsTitle");
       const h4 = document.querySelector("h4");
       const totalHints =  document.querySelector(".stats2-list:last-child .bar-title");
+      const advise = document.querySelector('#board-container p');
 
       document.title = "Polyo: A sua dose diária de diversão com novos jogos todos os dias!";
       metaDescription.setAttribute("content", "Polyo é um jogo gratuito de navegador. Treine seu cérebro com puzzles diários e divertidos!");
@@ -56,14 +57,16 @@ document.addEventListener("DOMContentLoaded", function() {
       descripition.innerText = "O jogo foi concluído em:";
       statsTitle[0].innerText = "# Dicas";
       statsTitle[1].innerText = "Jogos concluídos";
-      statsTitle[2].innerText = "Sequência atual";
-      statsTitle[3].innerText = "Maior sequência";
+      statsTitle[2].innerText = "Sequência Atual";
+      statsTitle[3].innerText = "Maior Sequência";
       statsGap.style.gap = `10px`;
       for (let i = 1; i <= 3; i++) {
         statsTitle[i].style.fontSize = "17px";
       }
       h4.innerText = "Distribuição dos tempos de conclusão:";
       totalHints.innerText = "Total de dicas usadas:";
+
+      advise.innerText = "Dê dois cliques na peça para rotacioná-la";
     };
   };
 

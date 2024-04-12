@@ -10,6 +10,7 @@ const distribuition = document.querySelectorAll('.bar');
 const totalHints = document.querySelector('.totalHints');
 const hintBtn = document.querySelector('.hintBtn');
 const hintN = document.querySelector('.hintN');
+const advise = document.querySelector('#board-container p');
 
 const modalHelp = new Modal('.modal-help','.close', '.helpBtn');
 const modalStats = new Modal('.modal-stats','.close-stats', '.statsBtn');
@@ -195,6 +196,8 @@ function verifySolution(matrix1, matrix2, stats, todayDate) {
       };
     }
   };
+
+  advise.style.display = "none";
 
   if (stats.lastDate != todayDate) {
     const endTime = new Date();
