@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", function() {
       descripition.innerText = "O jogo foi concluído em:";
       statsTitle[0].innerText = "# Dicas";
       statsTitle[1].innerText = "Jogos concluídos";
-      statsTitle[2].innerText = "Sequência Atual";
-      statsTitle[3].innerText = "Maior Sequência";
+      statsTitle[2].innerText = "Sequência atual";
+      statsTitle[3].innerText = "Maior sequência";
       statsGap.style.gap = `10px`;
       for (let i = 1; i <= 3; i++) {
         statsTitle[i].style.fontSize = "17px";
