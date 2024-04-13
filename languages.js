@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
       text[4].innerText = "Novo jogo todos os dias à meia-noite!";
       text[5].innerText = "O jogo será alterado à meia noite.";
       text[6].innerHTML = "Se você tiver alguma pergunta, feedback ou sugestão, sinta-se à vontade para entrar em contato pelo email <a href='mailto:polyodaily@gmail.com'>polyodaily@gmail.com</a>.";
-      text[7].innerText = "Este site foi desenvolvido por Augusto Badke.";
       
       descripition.innerText = "O jogo foi concluído em:";
       statsTitle[0].innerText = "# Dicas";
