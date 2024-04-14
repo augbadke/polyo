@@ -132,6 +132,8 @@ h2 {
   font-size: 15px;
   font-weight: 500;
   color: rgba(242, 242, 242);
+  pointer-events: 'none';
+  user-select: none;
 }
 
 #align_pieces {

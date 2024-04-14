@@ -211,7 +211,7 @@ class Polyomino {
     const Boardvalues = nonZeros[0].map((_, index) => {
       const row = nonZeros[0][index]+i;
       const col = nonZeros[1][index]+j;
-      if (row < this.numRows && col < this.numCols) {
+      if (row < this.numRows && row >= 0 && col < this.numCols && col>=0) {
         return Polyomino.boardState[row][col];
       }
     });
