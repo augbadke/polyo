@@ -123,7 +123,7 @@ function startGame() {
 
     piece.setOnBoardStateChange(() => {
       if (Polyomino.pieceInBoard === polyominos.length) {;
-        verifySolution(Polyomino.boardState, solution, stats, todayDate);
+        endGame();
       };
     });
   };
@@ -183,19 +183,7 @@ function loadHint(j) {
   }
 }
 
-function verifySolution(matrix1, matrix2, stats, todayDate) {
-
-  if (matrix1.length !== matrix2.length || matrix1[0].length !== matrix2[0].length) {
-    return;
-  };
-
-  for (let i = 0; i < matrix1.length; i++) {
-    for (let j = 0; j < matrix1[0].length; j++) {
-      if (matrix1[i][j] != matrix2[i][j]) {
-        return;
-      };
-    }
-  };
+function endGame() {
 
   advise.style.display = "none";
 

@@ -141,11 +141,6 @@ class Polyomino {
     });
 
     if (pieceRect.x <= boardRect.right && pieceRect.x >= (boardRect.left-20) && pieceRect.y <= boardRect.bottom && pieceRect.y >= (boardRect.top-20)) {
-      this.isInBoard = true;
-      if (this.isInBoard !== this.prevState) {
-        Polyomino.pieceInBoard++;
-        this.prevState = true;
-      }
       this.updateBoardState();
     } else {
       this.isInBoard = false;
@@ -232,8 +227,19 @@ class Polyomino {
       this.blocks.forEach((block) => {
         block.style.backgroundColor = this.color[1];
       });
+      this.isInBoard = true;
+      if (this.isInBoard !== this.prevState) {
+        Polyomino.pieceInBoard++;
+        this.prevState = true;
+      }
       if (typeof this.onBoardStateChange === 'function') {
           this.onBoardStateChange();
+      }
+    }else {
+      this.isInBoard = false;
+      if (this.isInBoard !== this.prevState) {
+        Polyomino.pieceInBoard--;
+        this.prevState = false;
       }
     }
   };
