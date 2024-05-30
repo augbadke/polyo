@@ -30,24 +30,17 @@
     <button type="button" title="Show stats" class="statsBtn">
       <svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 -960 960 960" width="25"><path d="M640-160v-280h160v280H640Zm-240 0v-640h160v640H400Zm-240 0v-440h160v440H160Z"/></svg>
     </button>
-    <h1>Polyo</h1>
+    <h1><a href="./index.html">Polyo</a></h1>
     <button type="button" title="Show games list" class="listBtn">
       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M80-160v-160h160v160H80Zm240 0v-160h560v160H320ZM80-400v-160h160v160H80Zm240 0v-160h560v160H320ZM80-640v-160h160v160H80Zm240 0v-160h560v160H320Z"/></svg>
     </button>
     <button type="button" title="Show contact info" class="contactBtn">
       <svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 -960 960 960" width="25"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280 320-200v-80L480-520 160-720v80l320 200Z"/></svg>
     </button>
+    
   </header>
 
-  <h2><span class="h2">Daily game</span> #<span class="gameN">0</span></h2>
-  <button type="button" title="Highlights a piece position on the board. Each click adds 1min to the timer." class="hintBtn"> <span class="hint-title">Show hint</span> <span class="hintN">1</span></button>
-
-  <div id="board-container">
-    <div id="board"></div>
-    <p>Double-click the piece to rotate it</p>
-    <a class="link" href="./list.html">Click to play previous games</a>
-    <div id="align_pieces"></div>
-  </div>
+  <div id="buttons-container"></div>
 
   <div class="modal-help"> 
     <div class="help-card">
@@ -154,18 +147,8 @@
         <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
       </button>
       <h3>Stats</h3>
-      <div class="Conclusion-text">
-        <p class="descripition">The puzzle was solved in:</p>
-        <span class="time">00:00</span>
-        <ul>
-          <li class="hints"><div class="counter hintsUsed">0</div><span class="statsTitle"># Hints</span></li>
-        </ul>
-        <a class="link" href="./list.html">Click to play previous games</a>
-      </div>
       <ul class="stats1">
-        <li class="stats1-list"><div class="counter puzzles_solved">0</div><div class="statsTitle">Puzzles solved</div></li>
-        <li class="stats1-list"><div class="counter current_streak">0</div><div class="statsTitle">Current streak</div></li>
-        <li class="stats1-list"><div class="counter max_streak">0</div><div class="statsTitle">Max streak</div></li>
+        <li class="stats1-list"><div class="counter puzzles_solved">0</div><div class="NSolvesTitle">Puzzles solved</div></li>
       </ul>
       <h4>Distribution of puzzle completion times:</h4>
       <ul class="stats2">
@@ -196,7 +179,6 @@
   <script src="./languages.js"></script>
   <script src="./games.js"></script>
   <script src="./modal.js"></script>
-  <script src="./Polyomino.js"></script>
-  <script src="./index.js"></script>
+  <script src="./list.js"></script>
 </body>
 </html>

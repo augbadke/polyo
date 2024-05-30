@@ -11,11 +11,16 @@ const totalHints = document.querySelector('.totalHints');
 const hintBtn = document.querySelector('.hintBtn');
 const hintN = document.querySelector('.hintN');
 const advise = document.querySelector('#board-container p');
+const link = document.querySelector('#board-container a');
+const listBtn = document.querySelector('.listBtn');
 
 const modalHelp = new Modal('.modal-help','.close', '.helpBtn');
 const modalStats = new Modal('.modal-stats','.close-stats', '.statsBtn');
 new Modal('.modal-contact','.close-contact', '.contactBtn');
 
+listBtn.addEventListener('click', ()=>{
+  window.location = `./list.html`
+})
 hintBtn.addEventListener('click', showHint)
 
 let screenWidth = window.matchMedia("(min-width: 450px)");
@@ -53,6 +58,17 @@ const stats = JSON.parse(localStorage.getItem('@polyo-stats:')) || {
   distribuition: [0,0,0,0,0,0],
   totalHints: 0,
   var1: null,
+};
+
+const stats2 = JSON.parse(localStorage.getItem('@polyo-history:')) || {
+  lastDate: '0000-00-00',
+  interactDate: '0000-00-00',
+  initialTime: null,
+  lastGamePlayed: 0,
+  distribuition: [0,0,0,0,0,0],
+  totalHints: 0,
+  var1: null,
+  gamesList: [],
 };
 
 if (stats.fisrtTime) {
@@ -186,6 +202,7 @@ function loadHint(j) {
 function endGame() {
 
   advise.style.display = "none";
+  link.style.display = "block"
 
   if (stats.lastDate != todayDate) {
     const endTime = new Date();
@@ -194,7 +211,10 @@ function endGame() {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = String(totalSeconds - minutes*60).padStart(2,'0');
     const time = `${String(minutes).padStart(2,'0')}:${seconds}`;
-   
+
+    stats2.gamesList.push(games[todayDate].n)
+
+    stats2.lastDate = todayDate;
     stats.lastDate = todayDate;
     if (stats.fisrtTime) {
       stats.maxStreak = 1;
@@ -214,20 +234,35 @@ function endGame() {
   
     if (totalSeconds <= 60) {
       stats.distribuition[0] += 1;
+      stats2.distribuition[0] += 1;
     } else if (totalSeconds <= 60*2) {
       stats.distribuition[1] += 1;
+      stats2.distribuition[1] += 1;
     } else if (totalSeconds <= 60*3) {
       stats.distribuition[2] += 1;
+      stats2.distribuition[2] += 1;
     } else if (totalSeconds <= 60*4) {
       stats.distribuition[3] += 1;
+      stats2.distribuition[3] += 1;
     } else if (totalSeconds <= 60*5) {
       stats.distribuition[4] += 1;
+      stats2.distribuition[4] += 1;
     } else if (totalSeconds > 60*5) {
       stats.distribuition[5] += 1;
+      stats2.distribuition[4] += 1;
     };
     stats.totalHints = stats.totalHints + currentHintIndex;
     stats.lastGamePlayed = games[todayDate].n;
 
+    stats2.totalHints = stats2.totalHints + currentHintIndex;
+    stats2.lastGamePlayed = games[todayDate].n;
+    stats2[games[todayDate].n] = {
+      time: time,
+      hints: currentHintIndex,
+      isSolved: true,
+    }
+
+    localStorage.setItem('@polyo-history:', JSON.stringify(stats2));
     localStorage.setItem('@polyo-stats:', JSON.stringify(stats));
   }
 
